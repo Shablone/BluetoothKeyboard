@@ -23,7 +23,7 @@
         txtInput.Select()
     End Sub
 
-    'Com Port speichern / laden
+    'save/load selected Com Port
     Private Sub ReadConfig()
         Try
             If LstCom.Items.Count = 0 Then Exit Sub
@@ -62,16 +62,18 @@
             Me.BringToFront()
             Me.Activate()
             txtInput.Focus()
-            LabelStatus.Text = "Input aktiviert"
+            LabelStatus.Text = "Live-Mode activated"
+            LabelStatus.Font = New Font(LabelStatus.Font, FontStyle.Bold Or FontStyle.Underline)
         Else
-            LabelStatus.Text = "Input deaktiviert"
+            LabelStatus.Text = "Live-Mode deactivated"
+            LabelStatus.Font = New Font(LabelStatus.Font, FontStyle.Regular Or FontStyle.Underline)
         End If
     End Sub
 
 
 
 
-    'String übertragen
+    'send txtbox on Enter
     Private Sub TextBox1_KeyUp(sender As Object, e As KeyEventArgs) Handles txtInput.KeyUp
         If e.KeyCode = Keys.Enter Then
             Dim Str As String = txtInput.Text.Substring(0, txtInput.Text.Length)
@@ -82,7 +84,7 @@
         End If
     End Sub
 
-    'Maustasten
+    'send mouseclicks
     Private Sub TextBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles txtInput.MouseDown
         If InputAktiv Then
             Select Case e.Button
@@ -109,7 +111,7 @@
         End If
     End Sub
 
-    'Mausbewegungen
+    'handle mouse movements
     Dim pos As Point
     Private Sub TimerMouse_Tick(sender As Object, e As EventArgs) Handles TimerMouse.Tick
         Dim diff As Point = Cursor.Position - pos
@@ -125,7 +127,7 @@
         pos.Y += txtInput.Height / 2
     End Sub
 
-    'Tastatureingaben
+    'send keys on live mode
     Private Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
         Com.SendKey(KeyHandling.keyTrans(Key), True)
         txtInfo.AppendText(Key.ToString & vbCrLf)
@@ -137,12 +139,14 @@
         txtInfo.AppendText("Zeichen nicht unterstützt:" & key & vbCrLf)
     End Sub
 
-    'Selektion senden
+    'send control handle text from attribute
     Private Sub RAlt() Handles kbHook.RAlt
         Dim Str As String = getSel.PutTextInClipboard
         Com.sendStr("S" & Str & Chr(1))
     End Sub
 
+
+    'testing
     Private Sub test_Click(sender As Object, e As EventArgs) Handles test.Click
         Const char_p As Char = "p"
         Const char_r As Char = "r"
@@ -181,4 +185,5 @@
         Com.sendbyte_raw(0, False)
         Com.sendbyte_raw(0, False)
     End Sub
+
 End Class

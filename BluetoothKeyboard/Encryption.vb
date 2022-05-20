@@ -1,6 +1,8 @@
 ﻿Module Encryption
 
-    Private Schlüssel(,) As Integer =
+    'symetric encryption for the bluetooth connection
+
+    Private EncKey(,) As Integer =
         {{136, 16, 158, 235, 11, 193, 182, 89, 207, 224},
 {13, 46, 233, 193, 178, 164, 5, 208, 49, 65},
 {84, 59, 62, 229, 192, 38, 178, 188, 189, 234},
@@ -15,10 +17,10 @@
     Private Index() As Integer = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 
-    '170 und 43 sind Funktionschars und müssen neu generiert werden
+    'value 170 and 43 are special characters and need to be re-encrypted (170=function for app, 43 is used by HC-06 and needs to be excluded)
     Public Function Encrypt(ByVal val As Integer) As Integer
         For x = 0 To Index.Length - 1
-            val = val Xor Schlüssel(x, Index(x))
+            val = val Xor EncKey(x, Index(x))
         Next
         'Debug.WriteLine(val)
         CountUp()
@@ -28,12 +30,12 @@
     Private Sub CountUp()
         Index(0) += 1
         For x = 0 To Index.Length - 1 - 1
-            If Index(x) = Schlüssel.GetLength(1) Then
+            If Index(x) = EncKey.GetLength(1) Then
                 Index(x) = 0
                 Index(x + 1) += 1
             End If
         Next
-        If Index(Index.Length - 1) = Schlüssel.GetLength(1) Then
+        If Index(Index.Length - 1) = EncKey.GetLength(1) Then
             Index(Index.Length - 1) = 0
         End If
     End Sub

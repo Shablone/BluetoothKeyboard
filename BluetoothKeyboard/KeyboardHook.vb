@@ -1,9 +1,7 @@
 ﻿Imports System.Runtime.InteropServices
 
 Public Class KeyboardHook
-
-    'Fängt Eingaben ab, erzeugt Event, serperat für LAlt und LStrg 
-
+    'hooks on keyboard events and generates events for the app. Also seperates Left Alt and Left Control for sepecial use in the app
     <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)>
     Private Overloads Shared Function SetWindowsHookEx(ByVal idHook As Integer, ByVal HookProc As KBDLLHookProc, ByVal hInstance As IntPtr, ByVal wParam As Integer) As Integer
     End Function

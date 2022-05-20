@@ -45,24 +45,24 @@
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Public Sub sendbyte_raw(ByVal i As Byte, ByVal do_encrypt As Boolean)
+    Public Sub sendbyte_raw(ByVal databyte As Byte, ByVal do_encrypt As Boolean)
         If Port Is Nothing Then Exit Sub
-        Dim i_original As Byte = i
+        Dim databyte_original As Byte = databyte
         Try
-            '170 und 43 sind Funktionschars und müssen neu generiert werden
-            Dim wiederholen As Boolean = True
-            While wiederholen
-                If do_encrypt Then i = Encrypt(i)
-                If i = 170 Or i = 43 Then
-                    If do_encrypt Then wiederholen = True Else wiederholen = False
-                    Dim databyte As Byte() = BitConverter.GetBytes(170)
-                    Port.Write(databyte, 0, 1)
-                    Debug.WriteLine(i_original & "  " & i)
+            'value 170 and 43 are special characters and need to be re-encrypted (170=special for app=nop, 43 is used by HC-06 and needs to be excluded)
+            Dim DoAgain As Boolean = True
+            While DoAgain
+                If do_encrypt Then databyte = Encrypt(databyte)
+                If databyte = 170 Or databyte = 43 Then
+                    If do_encrypt Then DoAgain = True Else DoAgain = False
+                    Dim databytes_converted As Byte() = BitConverter.GetBytes(170)
+                    Port.Write(databytes_converted, 0, 1)
+                    Debug.WriteLine(databyte_original & "  " & databyte)
                 Else
-                    wiederholen = False
-                    Dim databyte As Byte() = BitConverter.GetBytes(i)
-                    Port.Write(databyte, 0, 1)
-                    Debug.WriteLine(i_original & "  " & i)
+                    DoAgain = False
+                    Dim databytes_converted As Byte() = BitConverter.GetBytes(databyte)
+                    Port.Write(databytes_converted, 0, 1)
+                    Debug.WriteLine(databyte_original & "  " & databyte)
                 End If
             End While
         Catch ex As Exception
@@ -73,8 +73,8 @@
     Public Sub sendStr(ByVal str As String)
         If Port Is Nothing Then Exit Sub
         Try
-            For Each zeichen As Char In str
-                sendbyte_raw(Convert.ToByte(zeichen), True)
+            For Each _char As Char In str
+                sendbyte_raw(Convert.ToByte(_char), True)
             Next
         Catch ex As Exception
             ClosePort()

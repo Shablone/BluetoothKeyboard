@@ -1,6 +1,6 @@
 ﻿Module getSel
 
-    'liest aktuelle Selektion von aktuellem Steuerelement in beliebiger .net Anwendung aus
+    'Reads the control in windows, over which the mouse is hoverhing and gets its textcontent
 
     Private Declare Function GetWindowThreadProcessId Lib "User32" (ByVal hWnd As IntPtr, ByVal ProcessID As Integer) As Integer
     Private Declare Function GetGUIThreadInfo Lib "User32" (ByVal ThreadID As Integer, ByRef Info As InfoStruct) As Boolean

@@ -1,10 +1,10 @@
 ﻿Public Class KeyHandling
-    'Arduino verwendet andere Zuordnungen
+    'Arduino uses other key values then the windows key dict
 
 
     Private KeyDic As New Dictionary(Of Keys, Byte)
 
-    Public Shared Event NichtUnterstützt(ByVal key As Keys)
+    Public Shared Event NotSupported(ByVal key As Keys)
 
     Public Sub New()
         iniKeyDic()
@@ -64,7 +64,7 @@
         ElseIf key >= Keys.A And key <= Keys.Z Then
             Return key + 32
         Else
-            RaiseEvent NichtUnterstützt(key)
+            RaiseEvent NotSupported(key)
             Return 0
 
         End If
