@@ -44,7 +44,7 @@ Partial Class Form1
         'LstCom
         '
         Me.LstCom.FormattingEnabled = True
-        Me.LstCom.Location = New System.Drawing.Point(12, 104)
+        Me.LstCom.Location = New System.Drawing.Point(10, 39)
         Me.LstCom.Name = "LstCom"
         Me.LstCom.Size = New System.Drawing.Size(170, 95)
         Me.LstCom.TabIndex = 0
@@ -52,15 +52,15 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 76)
+        Me.Label1.Location = New System.Drawing.Point(10, 11)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(99, 13)
+        Me.Label1.Size = New System.Drawing.Size(101, 13)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Avaiable ComPorts:"
+        Me.Label1.Text = "Available ComPorts:"
         '
         'txtInput
         '
-        Me.txtInput.Location = New System.Drawing.Point(48, 281)
+        Me.txtInput.Location = New System.Drawing.Point(46, 216)
         Me.txtInput.Name = "txtInput"
         Me.txtInput.Size = New System.Drawing.Size(100, 20)
         Me.txtInput.TabIndex = 2
@@ -68,7 +68,7 @@ Partial Class Form1
         'txtInfo
         '
         Me.txtInfo.Enabled = False
-        Me.txtInfo.Location = New System.Drawing.Point(292, 104)
+        Me.txtInfo.Location = New System.Drawing.Point(414, 259)
         Me.txtInfo.Multiline = True
         Me.txtInfo.Name = "txtInfo"
         Me.txtInfo.Size = New System.Drawing.Size(237, 82)
@@ -82,7 +82,7 @@ Partial Class Form1
         '
         Me.LabelStatus.AutoSize = True
         Me.LabelStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.Location = New System.Drawing.Point(223, 312)
+        Me.LabelStatus.Location = New System.Drawing.Point(43, 300)
         Me.LabelStatus.Name = "LabelStatus"
         Me.LabelStatus.Size = New System.Drawing.Size(116, 13)
         Me.LabelStatus.TabIndex = 5
@@ -91,7 +91,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(289, 88)
+        Me.Label3.Location = New System.Drawing.Point(411, 243)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(148, 13)
         Me.Label3.TabIndex = 6
@@ -99,7 +99,7 @@ Partial Class Form1
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(32, 378)
+        Me.Label2.Location = New System.Drawing.Point(30, 338)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(378, 65)
         Me.Label2.TabIndex = 4
@@ -109,7 +109,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 89)
+        Me.Label4.Location = New System.Drawing.Point(10, 24)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(170, 13)
         Me.Label4.TabIndex = 9
@@ -118,7 +118,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(32, 256)
+        Me.Label5.Location = New System.Drawing.Point(30, 191)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(132, 13)
         Me.Label5.TabIndex = 10
@@ -127,7 +127,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(154, 276)
+        Me.Label6.Location = New System.Drawing.Point(152, 211)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(215, 26)
         Me.Label6.TabIndex = 11
@@ -137,7 +137,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 228)
+        Me.Label7.Location = New System.Drawing.Point(10, 163)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(216, 13)
         Me.Label7.TabIndex = 12
@@ -145,26 +145,26 @@ Partial Class Form1
         '
         'Label8
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(32, 315)
+        Me.Label8.Location = New System.Drawing.Point(30, 250)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(437, 39)
+        Me.Label8.Size = New System.Drawing.Size(378, 63)
         Me.Label8.TabIndex = 13
-        Me.Label8.Text = resources.GetString("Label8.Text")
+        Me.Label8.Text = "b) toggle live-mode via right alt key" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    In live mode every key press/release a" &
+    "nd mouseevent is transfered." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    This can be problematic if host and receiver u" &
+    "se different keyboard-layouts"
         '
         'Label9
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 18)
+        Me.Label9.Location = New System.Drawing.Point(197, 39)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(441, 39)
+        Me.Label9.Size = New System.Drawing.Size(360, 95)
         Me.Label9.TabIndex = 14
         Me.Label9.Text = resources.GetString("Label9.Text")
         '
         'chkAscii
         '
         Me.chkAscii.AutoSize = True
-        Me.chkAscii.Location = New System.Drawing.Point(384, 281)
+        Me.chkAscii.Location = New System.Drawing.Point(382, 216)
         Me.chkAscii.Name = "chkAscii"
         Me.chkAscii.Size = New System.Drawing.Size(162, 17)
         Me.chkAscii.TabIndex = 15
@@ -175,7 +175,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(576, 440)
+        Me.ClientSize = New System.Drawing.Size(678, 371)
         Me.Controls.Add(Me.chkAscii)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.LabelStatus)

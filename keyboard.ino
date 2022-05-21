@@ -5,16 +5,8 @@
 #define SWtx 16
 SoftwareSerial bluetooth(SWrx, SWtx); // RX, TX
 
-//todo
 
-//deutscher usb descriptor
-
-//->vb darf keine + schicken
-//170 = ignroieren
-//vb -> String falls + -> 170 und neu generieren
-
-
-//Verschlüsselung
+//encryption
 int Schluessel[][10] = {{136, 16, 158, 235, 11, 193, 182, 89, 207, 224}, {13, 46, 233, 193, 178, 164, 5, 208, 49, 65}, {84, 59, 62, 229, 192, 38, 178, 188, 189, 234}, {2, 8, 195, 233, 127, 4, 80, 189, 96, 62}, {113, 76, 111, 67, 42, 61, 75, 67, 103, 32}, {196, 143, 93, 222, 39, 93, 36, 182, 192, 9}, {166, 172, 139, 0, 235, 34, 249, 123, 166, 124}, {127, 214, 34, 118, 43, 164, 213, 121, 104, 241}, {54, 118, 218, 84, 157, 236, 216, 5, 222, 95}, {251, 92, 33, 178, 63, 100, 43, 100, 118, 201}};
 int Index[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -53,13 +45,15 @@ int ReadOne() {
   return readChr;
 }
 
-//Input lesen
+//Read Input
 
 int ProcessOne(bool enc) {
   int readChr = ReadOne();
   
-  //Modulstati kommen unverschlüsselt, Daten kommen verschlüsselt
-  //Würde Verschlüselung '+' ergeben, wird es mit 170 ersetzt und neu verschlüsselt
+  //vb must not send "+" as this gets used by the native bluetooth module
+  //170 will be ignored, working as a connection function key
+  //Metadata is not encrypted, data is encrypted
+
 
   static int countLeer = 0;
   if (readChr == 170) {
@@ -86,7 +80,7 @@ int ProcessOne(bool enc) {
     readChr = ProcessOne(false);
   }
 
-  if (enc) { //wenn verschlüsselt und damit relevant
+  if (enc) { //if is encrypted
     readChr = decrypt(readChr);
     Log(String(char(readChr)) + " " + String(readChr));
   }  
@@ -115,7 +109,7 @@ void Maus() {
   // z.B. MX123345Y12325M
   // oder Mr
   //Log("Maus");
-  char First = ProcessOne(true); //"X" oder Mausbutton
+  char First = ProcessOne(true); //"X" or mousebutton
   switch (First) {
     case 'l':
       Mouse.press(MOUSE_LEFT);
@@ -139,7 +133,7 @@ void Maus() {
 
   char chr3Serial;
 
-  //x Wert:
+  //x value:
   String valStr = "";
   while (true) {
     chr3Serial = ProcessOne(true);
@@ -151,7 +145,7 @@ void Maus() {
 
   int X = valStr.toInt();
 
-  //y Wert
+  //y value
   valStr = "";
   while (true) {
     chr3Serial = ProcessOne(true);
@@ -171,7 +165,7 @@ void loop() {
   char chrSerial = ProcessOne(true);
 
     switch ( chrSerial) {
-      case 'M': //Maus bewegen
+      case 'M': //move mouse
         Maus();
         break;
       case 'S': //String
@@ -214,7 +208,7 @@ void SendString() {
 
 
 
-//Verschlüsselung
+//encryption mechanic
 int decrypt(int val) {
   for (int i = 0; i <= 9; i++) {
     int k = Schluessel[i][Index[i]];

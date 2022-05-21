@@ -120,14 +120,12 @@
   <metadata name="TimerMouse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="Label8.Text" xml:space="preserve">
-    <value>b) toggle live-mode via right alt key
-    In live mode every key press/release and mouseevent is transfered.
-    Be aware that this can be problematic, if host and receiver use different keyboard-layouts</value>
-  </data>
   <data name="Label9.Text" xml:space="preserve">
     <value>1. Insert arduino into receiver device.
-1.1. If bluettooth connection in windows is not established yet, establish it. Restart App.
-2. Select Com-port, which represents the blutooth connecttion the the HC-06 on the arduino.</value>
+1.1. If bluetooth connection in windows is not established yet, establish it and restart the app.
+
+2. In left listbox: Select com-port which represents the bluetooth connection to the HC-06 module of the arduino.
+    (Can be check in bluetooth extended settings)
+    </value>
   </data>
 </root>

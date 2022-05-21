@@ -193,6 +193,4 @@
         Com.sendStr("S" & Str & Chr(1))
     End Sub
 
-
-
 End Class
