@@ -19,6 +19,7 @@
 
     Public Function PutTextInClipboard() As String
         Dim ParentHandle As IntPtr = GetForegroundWindow
+        Debug.WriteLine("ParentHandle = " & ParentHandle.ToString())
         If ParentHandle <> IntPtr.Zero Then
             Dim RightControl As IntPtr = SelectTheRightControl(ParentHandle)
             If Not RightControl = IntPtr.Zero Then

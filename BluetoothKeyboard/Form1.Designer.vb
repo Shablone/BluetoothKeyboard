@@ -32,14 +32,13 @@ Partial Class Form1
         Me.LabelStatus = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.test2 = New System.Windows.Forms.Button()
-        Me.test = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.chkAscii = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'LstCom
@@ -107,24 +106,6 @@ Partial Class Form1
         Me.Label2.Text = "c) press right alt to read out the control over which the mouse is hovering." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   " &
     "  Its text gets send to the receiver"
         '
-        'test2
-        '
-        Me.test2.Location = New System.Drawing.Point(431, 237)
-        Me.test2.Name = "test2"
-        Me.test2.Size = New System.Drawing.Size(75, 23)
-        Me.test2.TabIndex = 8
-        Me.test2.Text = "test2"
-        Me.test2.UseVisualStyleBackColor = True
-        '
-        'test
-        '
-        Me.test.Location = New System.Drawing.Point(431, 208)
-        Me.test.Name = "test"
-        Me.test.Size = New System.Drawing.Size(75, 23)
-        Me.test.TabIndex = 7
-        Me.test.Text = "test"
-        Me.test.UseVisualStyleBackColor = True
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -180,11 +161,22 @@ Partial Class Form1
         Me.Label9.TabIndex = 14
         Me.Label9.Text = resources.GetString("Label9.Text")
         '
+        'chkAscii
+        '
+        Me.chkAscii.AutoSize = True
+        Me.chkAscii.Location = New System.Drawing.Point(384, 281)
+        Me.chkAscii.Name = "chkAscii"
+        Me.chkAscii.Size = New System.Drawing.Size(162, 17)
+        Me.chkAscii.TabIndex = 15
+        Me.chkAscii.Text = "send via Numpad Ascii Code"
+        Me.chkAscii.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(576, 440)
+        Me.Controls.Add(Me.chkAscii)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.LabelStatus)
         Me.Controls.Add(Me.Label8)
@@ -192,8 +184,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.test2)
-        Me.Controls.Add(Me.test)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtInfo)
@@ -215,12 +205,11 @@ Partial Class Form1
     Friend WithEvents LabelStatus As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents test2 As Button
-    Friend WithEvents test As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
+    Friend WithEvents chkAscii As CheckBox
 End Class

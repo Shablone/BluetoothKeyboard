@@ -76,12 +76,58 @@
     'send txtbox on Enter
     Private Sub TextBox1_KeyUp(sender As Object, e As KeyEventArgs) Handles txtInput.KeyUp
         If e.KeyCode = Keys.Enter Then
-            Dim Str As String = txtInput.Text.Substring(0, txtInput.Text.Length)
+            Dim Str As String = txtInput.Text '.Substring(0, txtInput.Text.Length)
             If Not e.Shift Then
                 txtInput.Text = ""
             End If
-            Com.sendStr("S" & Str & Chr(1))
+            If chkAscii.Checked Then
+                sendAscii(Str)
+            Else
+                Com.sendStr("S" & Str & Chr(1))
+            End If
+
+
         End If
+    End Sub
+
+    Private Sub sendAscii(ByVal Str As String)
+        Const char_p As Char = "p"
+        Const char_r As Char = "r"
+        Dim unicode As System.Text.UnicodeEncoding = New System.Text.UnicodeEncoding()
+
+        For Each c As Char In Str
+            Com.SendByteRaw(Convert.ToByte(char_p), True) 'press Alt
+            Com.SendByteRaw(130, True)
+            Com.SendKey(234)    'Num 0
+            Dim charVal As Integer = Asc(c)
+            Dim charValStr As String = charVal.ToString()
+            For Each dec_c In charValStr
+                Select Case dec_c
+                    Case "1"
+                        Com.SendKey(225)
+                    Case "2"
+                        Com.SendKey(226)
+                    Case "3"
+                        Com.SendKey(227)
+                    Case "4"
+                        Com.SendKey(228)
+                    Case "5"
+                        Com.SendKey(229)
+                    Case "6"
+                        Com.SendKey(230)
+                    Case "7"
+                        Com.SendKey(231)
+                    Case "8"
+                        Com.SendKey(232)
+                    Case "9"
+                        Com.SendKey(233)
+                    Case "0"
+                        Com.SendKey(234)
+                End Select
+            Next
+            Com.SendByteRaw(Convert.ToByte(char_r), True) 'release Alt
+            Com.SendByteRaw(130, True)
+        Next
     End Sub
 
     'send mouseclicks
@@ -110,6 +156,8 @@
             End Select
         End If
     End Sub
+
+
 
     'handle mouse movements
     Dim pos As Point
@@ -146,44 +194,5 @@
     End Sub
 
 
-    'testing
-    Private Sub test_Click(sender As Object, e As EventArgs) Handles test.Click
-        Const char_p As Char = "p"
-        Const char_r As Char = "r"
-        Com.sendbyte_raw(Convert.ToByte(char_p), True)
-        Com.sendbyte_raw(130, True)
-
-        Com.sendbyte_raw(Convert.ToByte(char_p), True)
-        Com.sendbyte_raw(81, True)
-        Com.sendbyte_raw(Convert.ToByte(char_r), True)
-        Com.sendbyte_raw(81, True)
-
-
-        Com.sendbyte_raw(Convert.ToByte(char_r), True)
-        Com.sendbyte_raw(130, True)
-    End Sub
-
-    Private Sub test2_Click(sender As Object, e As EventArgs) Handles test2.Click
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(170, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-        Com.sendbyte_raw(0, False)
-    End Sub
 
 End Class

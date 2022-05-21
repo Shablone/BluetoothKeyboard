@@ -1,6 +1,9 @@
 ﻿Module Com
     Dim Port As IO.Ports.SerialPort = Nothing
 
+    Const char_p As Char = "p"
+    Const char_r As Char = "r"
+
     Public Sub ClosePort()
         If Port IsNot Nothing Then
             Try
@@ -29,23 +32,27 @@
         End Try
     End Sub
 
-    Public Sub SendKey(ByVal i As Byte, ByVal press As Boolean)
-        If Port Is Nothing Then Exit Sub
-        Const char_p As Char = "p"
-        Const char_r As Char = "r"
-        Try
-            If press Then
-                sendbyte_raw(Convert.ToByte(char_p), True)
-            Else
-                sendbyte_raw(Convert.ToByte(char_r), True)
-            End If
-            sendbyte_raw(i, True)
-        Catch ex As Exception
-            ClosePort()
-            MsgBox(ex.ToString)
-        End Try
+    Public Sub sendStr(ByVal str As String)
+        For Each _char As Char In str
+            SendByteRaw(Convert.ToByte(_char), True)
+        Next
     End Sub
-    Public Sub sendbyte_raw(ByVal databyte As Byte, ByVal do_encrypt As Boolean)
+    Public Sub SendKey(ByVal Keyval As Byte)
+        SendByteRaw(Convert.ToByte(char_p), True)
+        SendByteRaw(Keyval, True)
+        SendByteRaw(Convert.ToByte(char_r), True)
+        SendByteRaw(Keyval, True)
+    End Sub
+    Public Sub SendKey(ByVal Keyval As Byte, ByVal press As Boolean)
+        If press Then
+            SendByteRaw(Convert.ToByte(char_p), True)
+        Else
+            SendByteRaw(Convert.ToByte(char_r), True)
+        End If
+        SendByteRaw(Keyval, True)
+    End Sub
+
+    Public Sub SendByteRaw(ByVal databyte As Byte, ByVal do_encrypt As Boolean)
         If Port Is Nothing Then Exit Sub
         Dim databyte_original As Byte = databyte
         Try
@@ -62,7 +69,7 @@
                     DoAgain = False
                     Dim databytes_converted As Byte() = BitConverter.GetBytes(databyte)
                     Port.Write(databytes_converted, 0, 1)
-                    Debug.WriteLine(databyte_original & "  " & databyte)
+                    Debug.WriteLine(Chr(databyte_original) & " " & databyte_original & "  " & databyte)
                 End If
             End While
         Catch ex As Exception
@@ -70,18 +77,7 @@
             MsgBox(ex.ToString)
         End Try
     End Sub
-    Public Sub sendStr(ByVal str As String)
-        If Port Is Nothing Then Exit Sub
-        Try
-            For Each _char As Char In str
-                sendbyte_raw(Convert.ToByte(_char), True)
-            Next
-        Catch ex As Exception
-            ClosePort()
-            MsgBox(ex.ToString)
-        End Try
 
-    End Sub
 
 
 End Module

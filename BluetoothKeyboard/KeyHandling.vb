@@ -47,6 +47,17 @@
         KeyDic.Add(Keys.F10, 203)
         KeyDic.Add(Keys.F11, 204)
         KeyDic.Add(Keys.F12, 205)
+        KeyDic.Add(Keys.NumPad0, 234)
+        KeyDic.Add(Keys.NumPad1, 225)
+        KeyDic.Add(Keys.NumPad2, 226)
+        KeyDic.Add(Keys.NumPad3, 227)
+        KeyDic.Add(Keys.NumPad4, 228)
+        KeyDic.Add(Keys.NumPad5, 229)
+        KeyDic.Add(Keys.NumPad6, 230)
+        KeyDic.Add(Keys.NumPad7, 231)
+        KeyDic.Add(Keys.NumPad8, 232)
+        KeyDic.Add(Keys.NumPad9, 233)
+
     End Sub
 
     Public Function keyTrans(ByVal key As Byte) As Byte
@@ -54,8 +65,6 @@
         If KeyDic.ContainsKey(key) Then
             Return KeyDic(key)
         ElseIf key >= Keys.D0 And key <= Keys.D9 Then
-            Return key
-        ElseIf key >= Keys.NumPad0 And key <= Keys.F12 Then
             Return key
         ElseIf key >= Keys.Oem1 And key <= Keys.Oem102 Then
             Return key
