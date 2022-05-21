@@ -9,3 +9,5 @@ The connection goes: Host-PC: vb.net application -> connects via bluetooth seria
 
 Also the data transfered in the bluetooth connection is encrpyted by a self written algorythm. (The standard ones take to many ressources)
 Although this is currently only done symetrically. So if you care about this, you should change the hardcoded keys.
+
+![alt text](uiSample.png "App")
